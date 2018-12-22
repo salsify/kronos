@@ -1,15 +1,22 @@
-body{
+/* 
+Kronos/Date Transformer 2000
+Made by Evan Moulson!
+This is version 0.1
+*/
+
+
+body {
   font-family: 'Montserrat', sans-serif;
-   width: 100%;
-   height: 100%;
-   margin: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
 }
 
 .row {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  min-height: 100px;
+  min-height: 20vmin;
 }
 
 .column {
@@ -36,14 +43,14 @@ body{
 
 input {
   width: 90%;
-  font-size: 25vh;
+  font-size: 5vw;
   font-weight: 300;
   color: #d3d9dd;
   outline: 0;
   border: none;
-  border-bottom: 1vh solid #d3d9dd;
+  border-bottom: 0.5vh solid #d3d9dd;
   background: rgba(0, 0, 0, 0);
-  margin: 7vh 0vh 7vh 0vh;
+  margin: 4vh 0vh 3vh 0vh;
 }
 
 .top {
@@ -51,16 +58,35 @@ input {
 }
 
 .tz_label {
-  font-size: 20vh;
+  margin-left: 7%;
+}
+
+.geo_emoji {
+  font-size: 5vmin;
+  display: inline-block;
+}
+
+.geo_name {
+  font-size: 5vmin;
   font-weight: 700;
   color: #FFFFFF;
-  margin-left: 10vh;
+  margin-left: 5%;
+  display: inline-block;
 }
 
 .tz_time {
-  font-size: 14vh;
+  font-size: 5vmin;
   font-weight: 300;
-  color: #000000;
-  margin-left: 20vh;
+  color: #1A343D;
+  margin-left: 2vmin;
+  display: block;
 }
 
+.tz_iso_time {
+  font-size: 3vmin;
+  font-weight: 300;
+  font-style: italic;
+  color: #a0a0a0;
+  margin-left: 2vmin;
+  display: block;
+}
