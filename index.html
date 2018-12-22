@@ -4,17 +4,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <link rel="shortcut icon" type="image/x-icon" href="">
   <title>Date Transformer 2000</title>
-  <link href="./style.css" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,700" rel="stylesheet">
-
-
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data.min.js"></script>
+  <script src="./scripts.js"></script>
 </head>
-<body translate="no">
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.23/moment-timezone-with-data.min.js"></script>
-
+<body>
 <div class="container">
   <div class="row input_row top">
     <div class="column _3 top">
@@ -23,10 +20,8 @@
       <input type="text" id="input_dt" placeholder="date transformer 2000"></input>
     </div>
   </div>
-  <script>
-    function load() {
-      console.log('Loading!')
-    }
-    document.onload = load
-  </script>
+  <div id="tz_row_container">
+    <!--timezone rows go below here-->
+  </div>
 </div>
+</body>
