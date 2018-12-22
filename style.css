@@ -58,16 +58,15 @@ input {
 }
 
 .tz_label {
+  font-size: 6.5vmin;
   margin-left: 7%;
 }
 
 .geo_emoji {
-  font-size: 5vmin;
   display: inline-block;
 }
 
 .geo_name {
-  font-size: 5vmin;
   font-weight: 700;
   color: #FFFFFF;
   margin-left: 5%;
