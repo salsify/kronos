@@ -119,35 +119,36 @@ var error_msg = 'Please enter a valid date';
 // On keypress, update the dates of all of the timezones
 // This does all the cool time stuff!
 (function () {
-  // some jquery asking if the doc is ready
+  // asking if the doc is ready
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
     var input_dt = $('#input_dt'),
-      datetime = null,
+      d = null,
       tz_time = $('.tz_time'),
-      tz_iso_time = $('.tz_iso_time');
+      tz_iso_time = $('.tz_iso_time')
     // look for a keypress!
     input_dt.keyup(
       function (e) {
         // is the time longer than 0?
         if (input_dt.val().length > 0) {
           // parse the datetime inputted
-          datetime = spacetime(input_dt.val());
-          if (datetime.format('nice') !== '') { // ouch
+          d = spacetime(input_dt.val())
+          if (d.format('') !== '') { // ouch
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {
-              $('.' + place_tags.places[k].tz_class).text(datetime.goto(place_tags.places[k].timezone).format('nice').toString());
-              $('.' + place_tags.places[k].tz_class + '_iso').text(datetime.goto(place_tags.places[k].timezone).format('iso').toString());
+              var d_tz = d.goto(place_tags.places[k].timezone)
+              $('.' + place_tags.places[k].tz_class).text(d_tz.format('day-short') + ' ' + d_tz.format('month-short') + ' ' + d_tz.format('date-ordinal') + ', ' + d_tz.format('year') + ', ' + d_tz.format('time'))
+              $('.' + place_tags.places[k].tz_class + '_iso').text(d_tz.format('iso'))
             }
           } else {
-            tz_time.text(error_msg); // error! We set that earlier, remember?
-            tz_iso_time.text(error_msg);
+            tz_time.text(error_msg) // error! We set that earlier, remember?
+            tz_iso_time.text(error_msg)
           }
         } else {
           tz_time.text('')
           tz_iso_time.text('')
         }
       }
-    );
-  });
-}());
+    )
+  })
+}())
