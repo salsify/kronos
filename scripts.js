@@ -17,44 +17,52 @@
 //          "timezone": "US/Central" // the "official" moment.js timezone name
 //        }
 
+
+// IMPORTANT
+// Kronos uses IANA timezone names!
 var place_tags = {
   "places": [{
-    "location": "Austin",
-    "emoji": "🤠",
-    "tz_class": "austin",
-    "timezone": "US/Central"
-  }, {
-    "location": "Boston",
-    "emoji": "🦞",
-    "tz_class": "boston",
-    "timezone": "US/Eastern"
-  }, {
-    "location": "Lisbon",
-    "emoji": "🚋",
-    "tz_class": "lisbon",
-    "timezone": "Europe/Lisbon"
-  }, {
-    "location": "Bogotá",
-    "emoji": "🇨🇴",
-    "tz_class": "bogota",
-    "timezone": "America/Bogota"
-  }, {
-    "location": "UTC",
-    "emoji": "🌍",
-    "tz_class": "utc",
-    "timezone": "UTC"
-  }]
+      "location": "Boston",
+      "emoji": "🦞",
+      "tz_class": "boston",
+      "timezone": "America/New_York"
+    },
+    {
+      "location": "Lisbon",
+      "emoji": "🚋",
+      "tz_class": "lisbon",
+      "timezone": "Europe/Lisbon"
+    },
+    {
+      "location": "Bogotá",
+      "emoji": "🇨🇴",
+      "tz_class": "bogota",
+      "timezone": "America/Bogota"
+    },
+    {
+      "location": "Austin",
+      "emoji": "🤠",
+      "tz_class": "austin",
+      "timezone": "America/Chicago"
+    },
+    {
+      "location": "UTC",
+      "emoji": "🌍",
+      "tz_class": "utc",
+      "timezone": "UTC"
+    }
+  ]
 }
 
 // Let's make ourselves a nice thing here to add emoji and names
 function makeRow(name, emoji, tz_class) {
   // creates top-level <div class='fow'></div>
   var row = document.createElement('div')
-  row.className = 'row'
+  row.className = 'row time'
 
   // creates <div class='column _3'></div> (the timezone names)
   var column3 = document.createElement('div')
-  column3.className = 'column _3'
+  column3.className = 'column _3 label'
   row.appendChild(column3)
   
   // creates <div class='column _7'></div> (the actual times)
@@ -114,24 +122,31 @@ var error_msg = 'Please enter a valid date';
   // some jquery asking if the doc is ready
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
-    var input_dt = $('#input_dt'), date = null, tz_time = $('.tz_time');
+    var input_dt = $('#input_dt'),
+      datetime = null,
+      tz_time = $('.tz_time'),
+      tz_iso_time = $('.tz_iso_time');
     // look for a keypress!
     input_dt.keyup(
       function (e) {
         // is the time longer than 0?
         if (input_dt.val().length > 0) {
-          // parse the date using moment.js
-          date = moment(input_dt.val());
-          if (date !== null && date.format() != 'Invalid date') { // ouch
+          // parse the datetime inputted
+          datetime = spacetime(input_dt.val());
+          if (datetime.format('nice') !== '') { // ouch
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {
-              $('.' + place_tags.places[k].tz_class).text(date.tz(place_tags.places[k].timezone).format('llll').toString());
-              $('.' + place_tags.places[k].tz_class + '_iso').text(date.tz(place_tags.places[k].timezone).format().toString());
+              $('.' + place_tags.places[k].tz_class).text(datetime.goto(place_tags.places[k].timezone).format('nice').toString());
+              $('.' + place_tags.places[k].tz_class + '_iso').text(datetime.goto(place_tags.places[k].timezone).format('iso').toString());
             }
           } else {
             tz_time.text(error_msg); // error! We set that earlier, remember?
+            tz_iso_time.text(error_msg);
           }
-        } else {}
+        } else {
+          tz_time.text('')
+          tz_iso_time.text('')
+        }
       }
     );
   });

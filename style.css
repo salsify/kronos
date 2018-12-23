@@ -29,15 +29,10 @@ body {
 @media screen and (min-width: 800px) {
   ._3 {
     flex: 3;
-    background: #4EBFDF;
   }
 
   ._7 {
     flex: 7;
-  }
-
-  ._10 {
-    flex: 10;
   }
 }
 
@@ -53,13 +48,17 @@ input {
   margin: 4vh 0vh 3vh 0vh;
 }
 
-.top {
+.row.top {
   background: #1A343D;
+}
+
+.column.label {
+  background: #4EBFDF;
 }
 
 .tz_label {
   font-size: 6.5vmin;
-  margin-left: 7%;
+  margin: 5vmin 2vmin 5vmin 0;
 }
 
 .geo_emoji {

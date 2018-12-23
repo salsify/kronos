@@ -1,0 +1,34 @@
+{
+  "places": [
+    {
+      "location": "Boston",
+      "emoji": "🦞",
+      "tz_class": "boston",
+      "timezone": "America/New_York"
+    }, 
+    {
+      "location": "Lisbon",
+      "emoji": "🚋",
+      "tz_class": "lisbon",
+      "timezone": "Europe/Lisbon"
+    },
+    {
+      "location": "Bogotá",
+      "emoji": "🇨🇴",
+      "tz_class": "bogota",
+      "timezone": "America/Bogota"
+    }, 
+    {
+      "location": "Austin",
+      "emoji": "🤠",
+      "tz_class": "austin",
+      "timezone": "America/Chicago"
+    },
+    {
+      "location": "UTC",
+      "emoji": "🌍",
+      "tz_class": "utc",
+      "timezone": "UTC"
+    }
+  ]
+}
