@@ -103,14 +103,28 @@ function makeRow(name, emoji, tz_class) {
   return row 
 }
 
-    // This creates the requisite number of rows for the JSON object onload
-    // It was a pain, for some reason
-  window.addEventListener('load', function (e) {
-    for (var k in place_tags.places) {
-      row = makeRow(place_tags.places[k].location, place_tags.places[k].emoji, place_tags.places[k].tz_class)
-      document.getElementById('tz_row_container').appendChild(row)
-    }
-  })
+d_input = function() {
+  var input = document.getElementById('input_dt').value
+  return spacetime(input)
+}
+
+getLocalTime = function() {
+  spacetime
+}
+
+// This creates the requisite number of rows for the JSON object onload
+// It was a pain, for some reason
+makeTimeRows = function() {
+  for (var k in place_tags.places) {
+    row = makeRow(place_tags.places[k].location, place_tags.places[k].emoji, place_tags.places[k].tz_class)
+    document.getElementById('tz_row_container').appendChild(row)
+  }
+}
+
+// Makes time rows and sets local timezone on page load
+window.addEventListener('load', function (e) {
+  makeTimeRows()
+})
 
 // Set the error message
 // It's pretty boring
@@ -122,17 +136,17 @@ var error_msg = 'Please enter a valid date';
   // asking if the doc is ready
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
-    var input_dt = $('#input_dt'),
+    var input_text = $('#input_dt'),
       d = null,
       tz_time = $('.tz_time'),
       tz_iso_time = $('.tz_iso_time')
     // look for a keypress!
-    input_dt.keyup(
+    input_text.keyup(
       function (e) {
         // is the time longer than 0?
-        if (input_dt.val().length > 0) {
+        if (input_text.val().length > 0) {
           // parse the datetime inputted
-          d = spacetime(input_dt.val())
+          d = d_input()
           if (d.format('') !== '') { // ouch
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {

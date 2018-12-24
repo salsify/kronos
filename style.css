@@ -46,6 +46,16 @@ input {
   border-bottom: 0.5vh solid #d3d9dd;
   background: rgba(0, 0, 0, 0);
   margin: 4vh 0vh 3vh 0vh;
+  display: block;
+}
+
+.local_tz {
+  font-size: 2vmin;
+  font-weight: 300;
+  font-style: italic;
+  color: #a0a0a0;
+  margin-top: .5vmin;
+  display: block;
 }
 
 .row.top {
