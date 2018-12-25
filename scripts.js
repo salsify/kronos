@@ -103,9 +103,27 @@ function makeRow(name, emoji, tz_class) {
   return row 
 }
 
+default0 = function(a){
+  a = (typeof a !== 'undefined') ? a : 0
+}
+
 d_input = function() {
   var input_text = document.getElementById('input_dt').value
-  return spacetime(input_text)
+  var time_regex = /^(?!\d{4}-\d{2}-\d{2})(?<hour>[0-9]?[0-9])(:|\s)?(?<min>[0-5][0-9])?\s?(:|\s)?(?<sec>[0-5][0-9])?\s?(?<ampm>[aApP][mM])?\s?(?<tz>[a-zA-Z /_-]*)?/gi
+  if (spacetime(input_text).isValid() == false && input_text.length > 0) {
+    var t = time_regex.exec(input_text).groups
+    return spacetime({
+      hour: (typeof t.hour == 'undefined') ? 0 : t.hour,
+      minute: (typeof t.min == 'undefined') ? 0 : t.min,
+      second: (typeof t.sec == 'undefined') ? 0 : t.sec,
+      ampm: (typeof t.ampm == 'undefined') ? 'am' : t.ampm
+    }, 
+    // This should work, but it's causing some weirdness right now
+    //(typeof t.tz == 'undefined') ? spacetime().timezone().name : t.tz)
+    t.tz)
+  } else {
+    return spacetime(input_text)
+  } 
 }
 
 getLocalTime = function() {
@@ -138,7 +156,6 @@ var error_msg = 'Please enter a valid date';
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
     var input_text = $('#input_dt'),
-      d = null,
       tz_time = $('.tz_time'),
       tz_iso_time = $('.tz_iso_time')
     // look for a keypress!
@@ -152,7 +169,9 @@ var error_msg = 'Please enter a valid date';
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {
               var d_tz = d.goto(place_tags.places[k].timezone)
-              $('.' + place_tags.places[k].tz_class).text(d_tz.format('day-short') + ' ' + d_tz.format('month-short') + ' ' + d_tz.format('date-ordinal') + ', ' + d_tz.format('year') + ', ' + d_tz.format('time'))
+              // format as "Tue 25 Dec 2018, 1:13:23 AM"
+              $('.' + place_tags.places[k].tz_class).text(d_tz.unixFmt('EEE d MMM y, h:mm:ss a'))
+              // format as "2018-12-25T01:15:22.954-07:00"
               $('.' + place_tags.places[k].tz_class + '_iso').text(d_tz.format('iso'))
             }
           } else {
