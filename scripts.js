@@ -156,6 +156,7 @@ var error_msg = 'Please enter a valid date';
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
     var input_text = $('#input_dt'),
+      d = null,
       tz_time = $('.tz_time'),
       tz_iso_time = $('.tz_iso_time')
     // look for a keypress!
