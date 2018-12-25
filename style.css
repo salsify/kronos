@@ -42,9 +42,9 @@ input {
   color: #d3d9dd;
   outline: 0;
   border: none;
-  border-bottom: 0.5vh solid #d3d9dd;
+  border-bottom: 0.3vmin solid #d3d9dd;
   background: rgba(0, 0, 0, 0);
-  margin: 4vh 0vh 0vh 0vh;
+  margin: 4vh 0 0vh 2vmin;
   display: block;
 }
 
@@ -53,7 +53,7 @@ input {
   font-weight: 300;
   font-style: italic;
   color: #a0a0a0;
-  margin: .5vh 0 3vh 0;
+  margin: .7vh 0 3vmin 2vmin;
   display: block;
 }
 
@@ -85,7 +85,7 @@ input {
   font-size: 5vmin;
   font-weight: 300;
   color: #1A343D;
-  margin-left: 2vmin;
+  margin: 2vmin 0 0 2vmin;
   display: block;
 }
 
@@ -94,6 +94,6 @@ input {
   font-weight: 300;
   font-style: italic;
   color: #a0a0a0;
-  margin-left: 2vmin;
+  margin: 0 0 2vmin 2vmin;
   display: block;
 }
