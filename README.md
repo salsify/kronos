@@ -1,5 +1,5 @@
 # kronos
-[**Date Transformer 2000**](https://salsify.github.io/kronos/)
+## [Date Transformer 2000](https://salsify.github.io/kronos/)
 
 Allows you to input datetimes in all kinds of different formats and get both human-readable and iso8601 datetimes in timezones that we care a lot about! 
 Uses the [spacetime](https://github.com/spencermountain/spacetime/) time library for (most) parsing and transformation.
