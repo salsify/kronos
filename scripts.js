@@ -104,12 +104,12 @@ function makeRow(name, emoji, tz_class) {
 }
 
 d_input = function() {
-  var input = document.getElementById('input_dt').value
-  return spacetime(input)
+  var input_text = document.getElementById('input_dt').value
+  return spacetime(input_text)
 }
 
 getLocalTime = function() {
-  spacetime
+  return [spacetime().timezone().name, spacetime().timezone().display]
 }
 
 // This creates the requisite number of rows for the JSON object onload
@@ -123,6 +123,7 @@ makeTimeRows = function() {
 
 // Makes time rows and sets local timezone on page load
 window.addEventListener('load', function (e) {
+  $('.local_tz').text('Your timezone: "' + getLocalTime()[0] + '"/' + getLocalTime()[1])
   makeTimeRows()
 })
 

@@ -6,5 +6,7 @@ Allows you to input datetimes in all kinds of different formats and get both hum
 ## To-do:
 - add local timezone support
 - travel to random timezones for... testing
-- template this sh*t
-- pull the JSON out of the js file
+- Add seconds? https://github.com/spencermountain/spacetime/issues/70
+- Allow time (instead of date or datetime) input
+- Allow setting locale
+- General cleanup

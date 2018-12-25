@@ -1,9 +1,8 @@
 /* 
 Kronos/Date Transformer 2000
 Made by Evan Moulson!
-This is version 0.1
+This is version 0.3
 */
-
 
 body {
   font-family: 'Montserrat', sans-serif;
@@ -45,7 +44,7 @@ input {
   border: none;
   border-bottom: 0.5vh solid #d3d9dd;
   background: rgba(0, 0, 0, 0);
-  margin: 4vh 0vh 3vh 0vh;
+  margin: 4vh 0vh 0vh 0vh;
   display: block;
 }
 
@@ -54,7 +53,7 @@ input {
   font-weight: 300;
   font-style: italic;
   color: #a0a0a0;
-  margin-top: .5vmin;
+  margin: .5vh 0 3vh 0;
   display: block;
 }
 
