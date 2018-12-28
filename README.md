@@ -13,11 +13,11 @@ Uses the [spacetime](https://github.com/spencermountain/spacetime/) time library
  **Tell me if something doesn't work, but should!**
 
 ## To-do:
-- better support for datetimes like `2018-12-25 9:45pm`
-- copy-on-click for times
-- add local timezone support
-- travel to random timezones for... testing
-- Add seconds? https://github.com/spencermountain/spacetime/issues/70
-- Allow time (instead of date or datetime) input
-- Allow setting locale
-- General cleanup
+- [ ] better support for datetimes like `2018-12-25 9:45pm`
+- [ ] copy-on-click for times (maybe just ISO)
+- [x] add local timezone info
+- [ ] travel to random timezones for... testing
+- [x] Add seconds? https://github.com/spencermountain/spacetime/issues/70
+- [x] Allow time (instead of date or datetime) input
+- [ ] Allow setting locale
+- [ ] General cleanup
