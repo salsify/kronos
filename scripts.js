@@ -57,20 +57,24 @@ getLocalTime = function () {
   return [spacetime().timezone().name, spacetime().timezone().display]
 }
 
-d_input = function () {
-  var input_text = document.getElementById('input_dt').value
-  var time_regex = /^(?!\d{4}-\d{2}-\d{2})(?<hour>[0-9]?[0-9])(:|\s)?(?<min>[0-5][0-9])?\s?(:|\s)?(?<sec>[0-5][0-9])?\s?(?<ampm>[aApP][mM])?\s?(?<tz>[a-zA-Z /_-]*)?/gi
-  if (spacetime(input_text).isValid() == false && input_text.length > 0) {
+d_input = function(input_text) {
+  let time_regex = /^(?<fullDate>\d{4}[/-]\d{1,2}[/-]\d{1,2}\s|\d{1,2}[/-]\d{1,2}[/-]\d{4}\s)?(?<hour>[0-9]?[0-9])[: ]?(?<min>[0-5][0-9])?\s?[: ]?(?<sec>[0-5][0-9])?\s?(?<ampm>[aApP][mM]?)?\s?(?<tz>[a-zA-Z /_-]+)?$/i
+  if (time_regex.test(input_text) == true) {
     var t = time_regex.exec(input_text).groups
+    let timezone = (typeof t.tz == 'undefined') ? spacetime().timezone().name : t.tz
     return spacetime({
+        iso: (typeof t.hour == 'undefined') ? spacetime.now().format('iso-short') : spacetime(t.fullDate).format('iso-short'),
         hour: (typeof t.hour == 'undefined') ? 0 : t.hour,
         minute: (typeof t.min == 'undefined') ? 0 : t.min,
         second: (typeof t.sec == 'undefined') ? 0 : t.sec,
-        ampm: (typeof t.ampm == 'undefined') ? 'am' : t.ampm
-      },
-      // This should work, but it's causing some weirdness right now
-      //(typeof t.tz == 'undefined') ? spacetime().timezone().name : t.tz)
-      t.tz)
+        ampm: (typeof t.ampm == 'undefined') ? 'am' : (t.ampm + 'm').slice(0,2) //allows parsing '9a' or '9p'
+      }, 
+      timezone,
+      {
+        // Don't show warnings about half-typed timezones
+        quiet: true
+      }
+      )
   } else {
     return spacetime(input_text)
   }
@@ -147,7 +151,6 @@ var error_msg = 'Please enter a valid date';
 // On keypress, update the dates of all of the timezones
 // This does all the cool time stuff!
 (function () {
-  // asking if the doc is ready
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
     var input_text = $('#input_dt'),
@@ -155,13 +158,13 @@ var error_msg = 'Please enter a valid date';
       tz_time = $('.tz_time'),
       tz_iso_time = $('.tz_iso_time')
     // look for a keypress!
-    input_text.keyup(
+    input_text.on('input',  
       function (e) {
         // is the time longer than 0?
         if (input_text.val().length > 0) {
           // parse the datetime inputted
-          d = d_input()
-          if (d.format('') !== '') { // ouch
+          d = d_input(input_text.val())
+          if (d.isValid() == true) { // is the datetime valid?
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {
               var d_tz = d.goto(place_tags.places[k].timezone)
