@@ -17,7 +17,6 @@
 //          "timezone": "US/Central" // the "official" moment.js timezone name
 //        }
 
-
 // IMPORTANT
 // Kronos uses IANA timezone names!
 var place_tags = {
@@ -34,9 +33,9 @@ var place_tags = {
       "timezone": "Europe/Lisbon"
     },
     {
-      "location": "Bogotá",
+      "location": "Medellín",
       "emoji": "🇨🇴",
-      "tz_class": "bogota",
+      "tz_class": "medellin",
       "timezone": "America/Bogota"
     },
     {
@@ -52,6 +51,29 @@ var place_tags = {
       "timezone": "UTC"
     }
   ]
+}
+
+getLocalTime = function () {
+  return [spacetime().timezone().name, spacetime().timezone().display]
+}
+
+d_input = function () {
+  var input_text = document.getElementById('input_dt').value
+  var time_regex = /^(?!\d{4}-\d{2}-\d{2})(?<hour>[0-9]?[0-9])(:|\s)?(?<min>[0-5][0-9])?\s?(:|\s)?(?<sec>[0-5][0-9])?\s?(?<ampm>[aApP][mM])?\s?(?<tz>[a-zA-Z /_-]*)?/gi
+  if (spacetime(input_text).isValid() == false && input_text.length > 0) {
+    var t = time_regex.exec(input_text).groups
+    return spacetime({
+        hour: (typeof t.hour == 'undefined') ? 0 : t.hour,
+        minute: (typeof t.min == 'undefined') ? 0 : t.min,
+        second: (typeof t.sec == 'undefined') ? 0 : t.sec,
+        ampm: (typeof t.ampm == 'undefined') ? 'am' : t.ampm
+      },
+      // This should work, but it's causing some weirdness right now
+      //(typeof t.tz == 'undefined') ? spacetime().timezone().name : t.tz)
+      t.tz)
+  } else {
+    return spacetime(input_text)
+  }
 }
 
 // Let's make ourselves a nice thing here to add emoji and names
@@ -101,33 +123,6 @@ function makeRow(name, emoji, tz_class) {
 
   // return that row!
   return row 
-}
-
-default0 = function(a){
-  a = (typeof a !== 'undefined') ? a : 0
-}
-
-d_input = function() {
-  var input_text = document.getElementById('input_dt').value
-  var time_regex = /^(?!\d{4}-\d{2}-\d{2})(?<hour>[0-9]?[0-9])(:|\s)?(?<min>[0-5][0-9])?\s?(:|\s)?(?<sec>[0-5][0-9])?\s?(?<ampm>[aApP][mM])?\s?(?<tz>[a-zA-Z /_-]*)?/gi
-  if (spacetime(input_text).isValid() == false && input_text.length > 0) {
-    var t = time_regex.exec(input_text).groups
-    return spacetime({
-      hour: (typeof t.hour == 'undefined') ? 0 : t.hour,
-      minute: (typeof t.min == 'undefined') ? 0 : t.min,
-      second: (typeof t.sec == 'undefined') ? 0 : t.sec,
-      ampm: (typeof t.ampm == 'undefined') ? 'am' : t.ampm
-    }, 
-    // This should work, but it's causing some weirdness right now
-    //(typeof t.tz == 'undefined') ? spacetime().timezone().name : t.tz)
-    t.tz)
-  } else {
-    return spacetime(input_text)
-  } 
-}
-
-getLocalTime = function() {
-  return [spacetime().timezone().name, spacetime().timezone().display]
 }
 
 // This creates the requisite number of rows for the JSON object onload
