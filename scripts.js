@@ -57,13 +57,19 @@ getLocalTime = function () {
   return [spacetime().timezone().name, spacetime().timezone().display]
 }
 
+// Object template for the datetime to be returned
+function DateTime(datetime, hasDate) {
+  this.datetime = datetime
+  this.hasDate = hasDate
+}
+
 d_input = function(input_text) {
   let time_regex = /^(?<fullDate>\d{4}[/-]\d{1,2}[/-]\d{1,2}\s|\d{1,2}[/-]\d{1,2}[/-]\d{4}\s)?(?<hour>[0-9]?[0-9])[: ]?(?<min>[0-5][0-9])?\s?[: ]?(?<sec>[0-5][0-9])?\s?(?<ampm>[aApP][mM]?)?\s?(?<tz>[a-zA-Z /_-]+)?$/i
   if (time_regex.test(input_text) == true) {
     var t = time_regex.exec(input_text).groups
     let timezone = (typeof t.tz == 'undefined') ? spacetime().timezone().name : t.tz
-    return spacetime({
-        iso: (typeof t.hour == 'undefined') ? spacetime.now().format('iso-short') : spacetime(t.fullDate).format('iso-short'),
+     dt = new DateTime(spacetime({
+        iso: (typeof t.fullDate == 'undefined') ? spacetime.now().format('iso-short') : spacetime(t.fullDate).format('iso-short'),
         hour: (typeof t.hour == 'undefined') ? 0 : t.hour,
         minute: (typeof t.min == 'undefined') ? 0 : t.min,
         second: (typeof t.sec == 'undefined') ? 0 : t.sec,
@@ -74,10 +80,12 @@ d_input = function(input_text) {
         // Don't show warnings about half-typed timezones
         quiet: true
       }
-      )
+      ),
+      (typeof t.fullDate === 'undefined') ? false : true)
   } else {
-    return spacetime(input_text)
+    dt = new DateTime(spacetime(input_text), true)
   }
+  return dt
 }
 
 // Let's make ourselves a nice thing here to add emoji and names
@@ -153,10 +161,11 @@ var error_msg = 'Please enter a valid date';
 (function () {
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
-    var input_text = $('#input_dt'),
-      d = null,
-      tz_time = $('.tz_time'),
-      tz_iso_time = $('.tz_iso_time')
+    let input_text = $('#input_dt')
+    let d = null
+    let tz_time = $('.tz_time')
+    let tz_iso_time = $('.tz_iso_time')
+    let dtFormatFull = 'EEE d MMM y, h:mm:ss a'
     // look for a keypress!
     input_text.on('input',  
       function (e) {
@@ -164,12 +173,15 @@ var error_msg = 'Please enter a valid date';
         if (input_text.val().length > 0) {
           // parse the datetime inputted
           d = d_input(input_text.val())
-          if (d.isValid() == true) { // is the datetime valid?
+          if (d.datetime.isValid() == true) { // is the datetime valid?
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {
-              var d_tz = d.goto(place_tags.places[k].timezone)
+              var d_tz = d.datetime.goto(place_tags.places[k].timezone)
               // format as "Tue 25 Dec 2018, 1:13:23 AM"
-              $('.' + place_tags.places[k].tz_class).text(d_tz.unixFmt('EEE d MMM y, h:mm:ss a'))
+              if (d.hasDate === false) {
+                dtFormatFull = 'h:mm:ss a'
+              }
+              $('.' + place_tags.places[k].tz_class).text(d_tz.unixFmt(dtFormatFull))
               // format as "2018-12-25T01:15:22.954-07:00"
               $('.' + place_tags.places[k].tz_class + '_iso').text(d_tz.format('iso'))
             }
