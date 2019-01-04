@@ -165,7 +165,6 @@ var error_msg = 'Please enter a valid date';
     let d = null
     let tz_time = $('.tz_time')
     let tz_iso_time = $('.tz_iso_time')
-    let dtFormatFull = 'EEE d MMM y, h:mm:ss a'
     // look for a keypress!
     input_text.on('input',  
       function (e) {
@@ -179,9 +178,11 @@ var error_msg = 'Please enter a valid date';
               var d_tz = d.datetime.goto(place_tags.places[k].timezone)
               // format as "Tue 25 Dec 2018, 1:13:23 AM"
               if (d.hasDate === false) {
-                dtFormatFull = 'h:mm:ss a'
+                dtFormat = 'h:mm:ss a'
+              } else {
+               dtFormat = 'EEE d MMM y, h:mm:ss a'
               }
-              $('.' + place_tags.places[k].tz_class).text(d_tz.unixFmt(dtFormatFull))
+              $('.' + place_tags.places[k].tz_class).text(d_tz.unixFmt(dtFormat))
               // format as "2018-12-25T01:15:22.954-07:00"
               $('.' + place_tags.places[k].tz_class + '_iso').text(d_tz.format('iso'))
             }
