@@ -21,4 +21,4 @@ Uses the [spacetime](https://github.com/spencermountain/spacetime/) time library
 - [x] Add seconds? https://github.com/spencermountain/spacetime/issues/69
 - [x] Allow time (instead of date or datetime) input
 - [ ] Allow setting locale
-- [ ] General cleanup
+- [ ] General cleanup/rewrite for better style/clarity
