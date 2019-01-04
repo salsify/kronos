@@ -1,6 +1,5 @@
 // Kronos/Date Transformer 2000
 // Made by Evan Moulson!
-// This is version 0.1
 
 //to do:
 // Add local time selector
