@@ -44,6 +44,18 @@ var place_tags = {
       "timezone": "America/Chicago"
     },
     {
+      "location": "Manila",
+      "emoji": "🍦",
+      "tz_class": "manila",
+      "timezone": "Asia/Manila"
+    },
+    {
+      "location": "Melbourne",
+      "emoji": "🐨",
+      "tz_class": "melbourne",
+      "timezone": "Australia/Melbourne"
+    },
+    {
       "location": "UTC",
       "emoji": "🌍",
       "tz_class": "utc",
