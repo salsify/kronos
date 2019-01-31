@@ -73,9 +73,9 @@ input {
 }
 
 .tz_label {
-  font-size: 5.7vmin;
+  font-size: 4.8vmin;
   white-space: nowrap;
-  margin: 5vmin 1vmin 5vmin 2vmin;
+  margin: 4vmin 1vmin 4vmin 2vmin;
 }
 
 .geo_emoji {
@@ -90,7 +90,7 @@ input {
 }
 
 .tz_time {
-  font-size: 5vmin;
+  font-size: 4vmin;
   font-weight: 300;
   color: #1A343D;
   margin: 2vmin 0 0 2vmin;
