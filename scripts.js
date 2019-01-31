@@ -50,10 +50,10 @@ var place_tags = {
       "timezone": "Asia/Manila"
     },
     {
-      "location": "Melbourne",
-      "emoji": "🐨",
-      "tz_class": "melbourne",
-      "timezone": "Australia/Melbourne"
+      "location": "Auckland",
+      "emoji": "🐑",
+      "tz_class": "auckland",
+      "timezone": "Pacific/Auckland"
     },
     {
       "location": "UTC",
@@ -177,13 +177,13 @@ var error_msg = 'Please enter a valid date';
     let tz_time = $('.tz_time')
     let tz_iso_time = $('.tz_iso_time')
     // look for a keypress!
-    input_text.on('input',  
+    input_text.oninput,  
       function (e) {
         // is the time longer than 0?
         if (input_text.val().length > 0) {
           // parse the datetime inputted
           d = d_input(input_text.val())
-          if (d.datetime.isValid() == true) { // is the datetime valid?
+          if (d.datetime.isValid() === true) { // is the datetime valid?
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {
               var d_tz = d.datetime.goto(place_tags.places[k].timezone)
