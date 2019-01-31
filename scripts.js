@@ -177,7 +177,7 @@ var error_msg = 'Please enter a valid date';
     let tz_time = $('.tz_time')
     let tz_iso_time = $('.tz_iso_time')
     // look for a keypress!
-    input_text.on('keyup',  
+    input_text.on('input',  
       function (e) {
         // is the time longer than 0?
         if (input_text.val().length > 0) {
@@ -202,8 +202,8 @@ var error_msg = 'Please enter a valid date';
             tz_iso_time.text(error_msg)
           }
         } else {
-          tz_time.text('')
-          tz_iso_time.text('')
+          tz_time.val('')
+          tz_iso_time.val('')
         }
       }
     )
