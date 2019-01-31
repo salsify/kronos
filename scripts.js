@@ -202,8 +202,8 @@ var error_msg = 'Please enter a valid date';
             tz_iso_time.text(error_msg)
           }
         } else {
-          tz_time.val('')
-          tz_iso_time.val('')
+          tz_time.empty()
+          tz_iso_time.empty()
         }
       }
     )
