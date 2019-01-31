@@ -1,7 +1,6 @@
 /* 
 Kronos/Date Transformer 2000
-Made by Evan Moulson!
-This is version 0.3
+Made by Evan Moulson
 */
 
 body {
@@ -23,6 +22,14 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  min-width: 33%;
+}
+
+.footer {
+  height: 100%;
+  height: -moz-available;          /* WebKit-based browsers will ignore this. */
+  height: -webkit-fill-available;  /* Mozilla-based browsers will ignore this. */
+  height: fill-available;
 }
 
 @media screen and (min-width: 800px) {
@@ -67,6 +74,7 @@ input {
 
 .tz_label {
   font-size: 5.7vmin;
+  white-space: nowrap;
   margin: 5vmin 1vmin 5vmin 2vmin;
 }
 
