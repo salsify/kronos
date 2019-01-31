@@ -198,12 +198,12 @@ var error_msg = 'Please enter a valid date';
               $('.' + place_tags.places[k].tz_class + '_iso').text(d_tz.format('iso'))
             }
           } else {
-            tz_time.text(error_msg) // error! We set that earlier, remember?
-            tz_iso_time.text(error_msg)
+            $('.tz_time').text(error_msg)
+            $('.tz_iso_time').text(error_msg)
           }
         } else {
-          tz_time.empty()
-          tz_iso_time.empty()
+          $('.tz_time').empty()
+          $('.tz_iso_time').empty()
         }
       }
     )
