@@ -44,6 +44,12 @@ var place_tags = {
       "timezone": "America/Chicago"
     },
     {
+      "location": "Paris",
+      "emoji": "🥖",
+      "tz_class": "paris",
+      "timezone": "Europe/Paris"
+    },
+    {
       "location": "Manila",
       "emoji": "🍦",
       "tz_class": "manila",
