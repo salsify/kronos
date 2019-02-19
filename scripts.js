@@ -90,8 +90,8 @@ d_input = function(input_text) {
         hour: (typeof t.hour == 'undefined') ? 0 : t.hour,
         minute: (typeof t.min == 'undefined') ? 0 : t.min,
         second: (typeof t.sec == 'undefined') ? 0 : t.sec,
-        ampm: (typeof t.ampm == 'undefined') ? 'am' : (t.ampm + 'm').slice(0,2) //allows parsing '9a' or '9p'
-      }, 
+        ampm: (typeof t.ampm == 'undefined') ? null : (t.ampm + 'm').slice(0,2) //allows parsing '9a' or '9p'
+      },
       timezone,
       {
         // Don't show warnings about half-typed timezones
