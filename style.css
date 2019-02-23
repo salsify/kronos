@@ -45,6 +45,7 @@ input {
   width: 80%;
   font-size: 5vh;
   font-weight: 300;
+  font-family: inherit;
   color: #d3d9dd;
   outline: 0;
   border: none;
@@ -79,14 +80,14 @@ input {
 
 .geo_emoji {
   display: inline-block;
-  width: 25%;
+  width: 20%;
 }
 
 .geo_name {
   font-weight: 700;
   color: #FFFFFF;
   display: inline-block;
-  width: 75%;
+  width: 80%;
 }
 
 .tz_time {
