@@ -1,10 +1,4 @@
-// Kronos/Date Transformer 2000
-// Made by Evan Moulson!
-
-//to do:
-// Add local time selector
-// fix thing with time not disappearing
-// add iso8601-formatted options
+// Kronos
 
 // Defines the places you care about as an array of JSON objects
 // It uses the following format:
@@ -105,7 +99,6 @@ d_input = function(input_text) {
   return dt
 }
 
-// Let's make ourselves a nice thing here to add emoji and names
 function makeRow(name, emoji, tz_class) {
   // creates top-level <div class='fow'></div>
   var row = document.createElement('div')
@@ -150,12 +143,10 @@ function makeRow(name, emoji, tz_class) {
   tz_iso_time.className = 'tz_iso_time ' + tz_class + '_iso'
   column7.appendChild(tz_iso_time)
 
-  // return that row!
   return row 
 }
 
 // This creates the requisite number of rows for the JSON object onload
-// It was a pain, for some reason
 makeTimeRows = function() {
   for (var k in place_tags.places) {
     row = makeRow(place_tags.places[k].location, place_tags.places[k].emoji, place_tags.places[k].tz_class)
@@ -169,12 +160,9 @@ window.addEventListener('load', function (e) {
   makeTimeRows()
 })
 
-// Set the error message
-// It's pretty boring
 var error_msg = 'Please enter a valid date';
 
 // On keypress, update the dates of all of the timezones
-// This does all the cool time stuff!
 (function () {
   $(document).ready(function () {
     // sets the input var, date, and time values to defaults
@@ -182,14 +170,14 @@ var error_msg = 'Please enter a valid date';
     let d = null
     let tz_time = $('.tz_time')
     let tz_iso_time = $('.tz_iso_time')
-    // look for a keypress!
+    // look for input
     input_text.on('input',  
       function (e) {
         // is the time longer than 0?
         if (input_text.val().length > 0) {
           // parse the datetime inputted
           d = d_input(input_text.val())
-          if (d.datetime.isValid() === true) { // is the datetime valid?
+          if (d.datetime.isValid() === true) {
             // set the timezoned time for each timezone in our JSON array
             for(var k in place_tags.places) {
               var d_tz = d.datetime.goto(place_tags.places[k].timezone)
