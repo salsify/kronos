@@ -76,24 +76,15 @@ function DateTime(datetime, hasDate) {
 
 d_input = function(input_text) {
   const time_regex = /^(\d{4}[/-]\d{1,2}[/-]\d{1,2}\s|\d{1,2}[/-]\d{1,2}[/-]\d{4}\s)?([0-9]?[0-9])[: ]?([0-5][0-9])?\s?[: ]?([0-5][0-9])?\s?([aApP][mM]?)?\s?([a-zA-Z /_-]+)?$/i
-  // ECMAScript 2018 Regexp named groups (Chrome support, but no FF support as of 2019-02-23)
-  // const time_regex = /^(?<fullDate>\d{4}[/-]\d{1,2}[/-]\d{1,2}\s|\d{1,2}[/-]\d{1,2}[/-]\d{4}\s)?(?<hour>[0-9]?[0-9])[: ]?(?<min>[0-5][0-9])?\s?[: ]?(?<sec>[0-5][0-9])?\s?(?<ampm>[aApP][mM]?)?\s?(?<tz>[a-zA-Z /_-]+)?$/i
   if (time_regex.test(input_text) == true) {
-    // var t = time_regex.exec(input_text).groups
-    var t = time_regex.exec(input_text) 
-    // let timezone = (typeof t.tz == 'undefined') ? spacetime().timezone().name : t.tz
-    let timezone = (typeof t[6] == 'undefined') ? spacetime().timezone().name : t[6] // t.tz
+    let [, fullDate, hour, min, sec, ampm, tz] = time_regex.exec(input_text)
+    let timezone = (typeof tz == 'undefined') ? spacetime().timezone().name : tz // t.tz
      dt = new DateTime(spacetime({
-        // iso: (typeof t.fullDate == 'undefined') ? spacetime.now().format('iso-short') : spacetime(t.fullDate).format('iso-short'),
-        iso: (typeof t[1] == 'undefined') ? spacetime.now().format('iso-short') : spacetime(t[1]).format('iso-short'),
-        // hour: (typeof t.hour == 'undefined') ? 0 : t.hour,
-        hour: (typeof t[2] == 'undefined') ? 0 : t[2],
-        // minute: (typeof t.min == 'undefined') ? 0 : t.min,
-        minute: (typeof t[3] == 'undefined') ? 0 : t[3],
-        // second: (typeof t.sec == 'undefined') ? 0 : t.sec,
-        second: (typeof t[4] == 'undefined') ? 0 : t[4],
-        // ampm: (typeof t.ampm == 'undefined') ? null : (t.ampm + 'm').slice(0,2) //allows parsing '9a' or '9p'
-        ampm: (typeof t[5] == 'undefined') ? null : (t[5] + 'm').slice(0,2) //allows parsing '9a' or '9p'
+        iso: (typeof fullDate == 'undefined') ? spacetime.now().format('iso-short') : spacetime(fullDate).format('iso-short'),
+        hour: (typeof hour == 'undefined') ? 0 : hour,
+        minute: (typeof min == 'undefined') ? 0 : min,
+        second: (typeof sec == 'undefined') ? 0 : sec,
+        ampm: (typeof ampm == 'undefined') ? null : (ampm + 'm').slice(0,2) //allows parsing '9a' or '9p'
       },
       timezone,
       {
@@ -101,7 +92,7 @@ d_input = function(input_text) {
         quiet: true
       }
       ),
-      (typeof t[1] === 'undefined') ? false : true)
+      (typeof fullDate === 'undefined') ? false : true)
   } else {
     dt = new DateTime(spacetime(input_text), true)
   }
