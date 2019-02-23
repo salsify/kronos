@@ -12,9 +12,9 @@ body {
 
 .row {
   display: flex;
+  flex-basis: auto;
   flex-direction: row;
   flex-wrap: wrap;
-  min-height: 20vmin;
 }
 
 .column {
@@ -22,7 +22,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-width: 33%;
 }
 
 .footer {
@@ -33,34 +32,34 @@ body {
 }
 
 @media screen and (min-width: 800px) {
-  ._3 {
-    flex: 3;
+  .small_col {
+    flex: 2.5;
   }
 
-  ._7 {
-    flex: 7;
+  .big_col {
+    flex: 7.5;
   }
 }
 
 input {
-  width: 90%;
-  font-size: 5vw;
+  width: 80%;
+  font-size: 5vh;
   font-weight: 300;
   color: #d3d9dd;
   outline: 0;
   border: none;
-  border-bottom: 0.3vmin solid #d3d9dd;
+  border-bottom: 0.3vh solid #d3d9dd;
   background: rgba(0, 0, 0, 0);
-  margin: 4vh 0 0vh 2vmin;
+  margin: 6vh 0 0 2vw;
   display: block;
 }
 
 .local_tz {
-  font-size: 2vmin;
+  font-size: 2vh;
   font-weight: 300;
   font-style: italic;
   color: #a0a0a0;
-  margin: .7vh 0 3vmin 2vmin;
+  margin: .5vh 0 2vh 2vw;
   display: block;
 }
 
@@ -73,35 +72,36 @@ input {
 }
 
 .tz_label {
-  font-size: 4.8vmin;
+  font-size: calc(1vw + 1vh + .9vmin);
   white-space: nowrap;
-  margin: 4vmin 1vmin 4vmin 2vmin;
+  margin: 7vh 0vh 7vh 10%;
 }
 
 .geo_emoji {
   display: inline-block;
+  width: 25%;
 }
 
 .geo_name {
   font-weight: 700;
   color: #FFFFFF;
-  margin: 0 5% 0 5%;
   display: inline-block;
+  width: 75%;
 }
 
 .tz_time {
-  font-size: 4vmin;
+  font-size: 3vmax;
   font-weight: 300;
   color: #1A343D;
-  margin: 2vmin 0 0 2vmin;
+  margin: 2vw 0 0 2vw;
   display: block;
 }
 
 .tz_iso_time {
-  font-size: 3vmin;
+  font-size: 2vmax;
   font-weight: 300;
   font-style: italic;
   color: #a0a0a0;
-  margin: 0 0 2vmin 2vmin;
+  margin: 0 0 2vw 2vw;
   display: block;
 }

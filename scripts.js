@@ -104,14 +104,14 @@ function makeRow(name, emoji, tz_class) {
   var row = document.createElement('div')
   row.className = 'row time'
 
-  // creates <div class='column _3'></div> (the timezone names)
+  // creates <div class='column small_col'></div> (the timezone names)
   var column3 = document.createElement('div')
-  column3.className = 'column _3 label'
+  column3.className = 'column small_col label'
   row.appendChild(column3)
   
-  // creates <div class='column _7'></div> (the actual times)
+  // creates <div class='column big_col'></div> (the actual times)
   var column7 = document.createElement('div')
-  column7.className = 'column _7'
+  column7.className = 'column big_col'
   row.appendChild(column7)
 
   // creates <span class='tz_label'></span> (a wrapper for the names and emoji)
@@ -185,7 +185,7 @@ var error_msg = 'Please enter a valid date';
               if (d.hasDate === false) {
                 dtFormat = 'h:mm:ss a'
               } else {
-               dtFormat = 'EEE d MMM y, h:mm:ss a'
+               dtFormat = 'EEE d MMMM y, h:mm:ss a'
               }
               $('.' + place_tags.places[k].tz_class).text(d_tz.unixFmt(dtFormat))
               // format as "2018-12-25T01:15:22.954-07:00"
