@@ -43,20 +43,20 @@ body {
 
 input {
   width: 80%;
-  font-size: 5vh;
+  font-size: 4vmax;
   font-weight: 300;
   font-family: inherit;
   color: #d3d9dd;
   outline: 0;
   border: none;
-  border-bottom: 0.3vh solid #d3d9dd;
+  border-bottom: 0.1vw solid #d3d9dd;
   background: rgba(0, 0, 0, 0);
-  margin: 6vh 0 0 2vw;
+  margin: 5vmin 0 0 2vw;
   display: block;
 }
 
 .local_tz {
-  font-size: 2vh;
+  font-size: 1vw;
   font-weight: 300;
   font-style: italic;
   color: #a0a0a0;
@@ -73,9 +73,9 @@ input {
 }
 
 .tz_label {
-  font-size: calc(1vw + 1vh + .9vmin);
+  font-size: calc(1.8vw + 1vh + .9vmin);
   white-space: nowrap;
-  margin: 7vh 0vh 7vh 10%;
+  margin: 8vmin 0vh 8vmin 10%;
 }
 
 .geo_emoji {

@@ -88,8 +88,8 @@ d_input = function(input_text) {
       },
       timezone,
       {
-        // Don't show warnings about half-typed timezones
-        quiet: true
+        // Don't show warnings
+        silent: true
       }
       ),
       (typeof fullDate === 'undefined') ? false : true)
@@ -168,8 +168,6 @@ var error_msg = 'Please enter a valid date';
     // sets the input var, date, and time values to defaults
     let input_text = $('#input_dt')
     let d = null
-    let tz_time = $('.tz_time')
-    let tz_iso_time = $('.tz_iso_time')
     // look for input
     input_text.on('input',  
       function (e) {
