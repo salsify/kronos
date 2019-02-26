@@ -75,7 +75,7 @@ input {
 .tz_label {
   font-size: calc(1.8vw + 1vh + .9vmin);
   white-space: nowrap;
-  margin: 8vmin 0vh 8vmin 10%;
+  margin: 6vmin 0vh 6vmin 10%;
 }
 
 .geo_emoji {
