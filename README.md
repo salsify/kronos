@@ -28,3 +28,4 @@ Uses the [spacetime](https://github.com/spencermountain/spacetime/) time library
 - [ ] Replace regexp with datetime parser
 - [ ] Add zone name/offset to each location name
 - [ ] General cleanup/style improvements
+- [ ] Make input into params on the URL so that datetimes can be copied as a URL?
