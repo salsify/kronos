@@ -32,6 +32,12 @@ var place_tags = {
       "timezone": "America/Bogota"
     },
     {
+      "location": "Vancouver",
+      "emoji": "🏔️",
+      "tz_class": "vancouver",
+      "timezone": "America/Vancouver"
+    },
+    {
       "location": "Austin",
       "emoji": "🤠",
       "tz_class": "austin",
