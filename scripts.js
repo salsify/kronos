@@ -5,9 +5,9 @@
 //var place_tags = {
 //    "places": [{
 //          "location": "Austin", // the name you want to appear
-//          "emoji": "🤠", // emojis, because this is a hip webapp
+//          "emoji": "🤠", // emojis, because this is a hip page
 //          "tz_class": "austin", // the class you're going to use later
-//          "timezone": "US/Central" // the "official" moment.js timezone name
+//          "timezone": "US/Central" // the IANA timezone name
 //        }
 
 // IMPORTANT
