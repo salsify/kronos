@@ -26,12 +26,6 @@ var place_tags = {
       "timezone": "Europe/Lisbon"
     },
     {
-      "location": "Medellín",
-      "emoji": "🇨🇴",
-      "tz_class": "medellin",
-      "timezone": "America/Bogota"
-    },
-    {
       "location": "Vancouver",
       "emoji": "🏔️",
       "tz_class": "vancouver",
@@ -54,12 +48,6 @@ var place_tags = {
       "emoji": "🍦",
       "tz_class": "manila",
       "timezone": "Asia/Manila"
-    },
-    {
-      "location": "Auckland",
-      "emoji": "🐑",
-      "tz_class": "auckland",
-      "timezone": "Pacific/Auckland"
     },
     {
       "location": "UTC",
