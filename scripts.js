@@ -44,6 +44,12 @@ var place_tags = {
       "timezone": "Europe/Paris"
     },
     {
+      "location": "Tel Aviv",
+      "emoji": "🏖️",
+      "tz_class": "tel_aviv",
+      "timezone": "Asia/Tel_Aviv"
+    },
+    {
       "location": "Manila",
       "emoji": "🍦",
       "tz_class": "manila",
